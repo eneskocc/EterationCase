@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductDetail from './src/screens/ProductDetail';
-import Route from './src/route';
+import Route from './src/Route';
 
 export const Stack = createNativeStackNavigator();
 
