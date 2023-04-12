@@ -2,8 +2,8 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import React from 'react'
 import { Ionicons } from "@expo/vector-icons";
 
-const SearchBar = () => {
-    const [text, onChangeText] = React.useState('');
+const SearchBar = (props) => {
+
     return (
         <View style={{ width: '100%', borderRadius: 10, backgroundColor: '#fafafa', padding: 10, marginVertical: 10, flexDirection: 'row', alignItems: 'center' }}>
             <Ionicons
@@ -14,9 +14,9 @@ const SearchBar = () => {
             />
               <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-        placeholder="useless placeholder"
+        onChangeText={props.setSearchText}
+        value={props.searchText}
+        placeholder="Search"
         keyboardType="numeric"
       />
         </View>

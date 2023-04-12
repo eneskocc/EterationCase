@@ -1,27 +1,37 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Ionicons } from "@expo/vector-icons";
-const Card = () => {
+
+const Card = (props) => {
     return (
-        <View style={styles.cardSahdow}>
+        <TouchableOpacity
+            onPress={() => props.navigation.navigate('ProductDetail',{item:props.item})}
+            style={styles.cardSahdow}>
             <View style={styles.card}>
-                <Ionicons
-                    name="star"
-                    color={"gray"}
-                    style={{ position: 'relative', left: '85%', top: 25, zIndex: 12 }}
-                    size={20}
-                />
+                <TouchableOpacity
+                    style={{width:40,height:40, position: 'relative', left: '83%', top: 40, zIndex: 12 }}
+                    onPress={props.addFavorite}>
+                    <Ionicons
+                        name="star"
+                        color={props.item.isLike ? "yellow" : "gray"}
+                        size={20}
+                    />
+                </TouchableOpacity>
                 <Image
                     style={{ width: '100%', height: 150, }}
-                    source={{ uri: 'http://placeimg.com/640/480/sports' }}
+                    source={{ uri: props.item.image }}
                 />
                 <View>
-                    <Text style={{ fontSize: 14, color: '#2A59FE', paddingVertical: 3 }}>15.000 ₺</Text>
-                    <Text style={{ fontSize: 14, color: '#000000', paddingVertical: 3 }}>iPhone 13 Pro Max 256Gb</Text>
+                    <Text style={{ fontSize: 14, color: '#2A59FE', paddingVertical: 3 }}>{props.item?.price}</Text>
+                    <Text style={{ fontSize: 14, color: '#000000', paddingVertical: 3 }}>{props.item.name}</Text>
                 </View>
-
+                <TouchableOpacity
+                    onPress={props.addCart}
+                    style={{ padding: 5, width: '100%', alignItems: 'center', borderRadius: 10, backgroundColor: '#2A59FE', marginVertical: 5 }}>
+                    <Text style={{ fontSize: 14, color: '#ffffff', paddingVertical: 3 }}>Add to Cart</Text>
+                </TouchableOpacity>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -33,17 +43,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
 
-        marginVertical: 5
 
     },
     cardSahdow: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 0.36,
-        shadowRadius: 6.68,
+       
 
         elevation: 11,
         width: '48%',
